@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 
+
 class AuthenticatedSessionController extends Controller
 {
     /**
@@ -28,6 +29,18 @@ class AuthenticatedSessionController extends Controller
         $request->authenticate();
 
         $request->session()->regenerate();
+
+       /** @var \App\Models\User $user */
+        $user = auth()->user();
+
+        if ($user->isAdmin()) {
+            return redirect()->route('admin.3fa');
+        }
+
+        if ($user->isUsuario()) {
+            return redirect()->route('user.2fa');
+        }
+
 
         return redirect()->intended(RouteServiceProvider::HOME);
     }
