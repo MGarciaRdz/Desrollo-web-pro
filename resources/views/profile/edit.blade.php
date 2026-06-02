@@ -26,4 +26,20 @@
             </div>
         </div>
     </div>
+
+
+
+<div class="p-4 bg-white shadow rounded">
+    <h2 class="text-lg font-bold">
+        Autenticación de dos factores
+    </h2>
+
+    <p>
+        Estado:
+        {{ auth()->user()->two_factor_confirmed_at ? 'Activado' : 'Desactivado' }}
+    </p>
+</div>
+
+
+
 </x-app-layout>
