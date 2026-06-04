@@ -34,13 +34,16 @@ class AuthenticatedSessionController extends Controller
         $user = auth()->user();
 
         if ($user->isAdmin()) {
-            return redirect()->route('admin.3fa');
+            return redirect()->route('dashboard.admin');
         }
 
         if ($user->isUsuario()) {
-            return redirect()->route('user.2fa');
+            return redirect()->route('dashboard.usuario');
         }
 
+        if ($user->isInvitado()) {
+            return redirect()->route('dashboard.invitado');
+        }
 
         return redirect()->intended(RouteServiceProvider::HOME);
     }
