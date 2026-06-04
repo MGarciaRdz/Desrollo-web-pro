@@ -2,6 +2,9 @@
 
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\AdminDashboardController;
+use App\Http\Controllers\UsuarioDashboardController;
+use App\Http\Controllers\InvitadoDashboardController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -22,15 +25,15 @@ Route::get('/', function () {
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
-    Route::get('/dashboard/admin', [App\Http\Controllers\AdminDashboardController::class, 'index'])
+    Route::get('/dashboard/admin', [AdminDashboardController::class, 'index'])
         ->middleware('role:Admin')
         ->name('dashboard.admin');
 
-    Route::get('/dashboard/usuario', [App\Http\Controllers\UsuarioDashboardController::class, 'index'])
+    Route::get('/dashboard/usuario', [UsuarioDashboardController::class, 'index'])
         ->middleware('role:Usuario')
         ->name('dashboard.usuario');
 
-    Route::get('/dashboard/invitado', [App\Http\Controllers\InvitadoDashboardController::class, 'index'])
+    Route::get('/dashboard/invitado', [InvitadoDashboardController::class, 'index'])
         ->middleware('role:Invitado')
         ->name('dashboard.invitado');
 
