@@ -18,9 +18,32 @@
         <div class="min-h-screen bg-gray-100">
             @include('layouts.navigation')
 
+            @if (session('error'))
+                <div class="max-w-7xl mx-auto py-4 px-4 sm:px-6 lg:px-8">
+                    <div class="rounded-md bg-red-50 p-4">
+                        <div class="flex">
+                            <div class="ml-3">
+                                <h3 class="text-sm font-medium text-red-800">{{ session('error') }}</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endif
+
+            @if (session('status'))
+                <div class="max-w-7xl mx-auto py-4 px-4 sm:px-6 lg:px-8">
+                    <div class="rounded-md bg-green-50 p-4">
+                        <div class="flex">
+                            <div class="ml-3">
+                                <h3 class="text-sm font-medium text-green-800">{{ session('status') }}</h3>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endif
+
             <!-- Page Heading -->
             @if (isset($header))
-                <header class="bg-white shadow">
                     <div class="max-w-7xl mx-auto py-6 px-4 sm:px-6 lg:px-8">
                         {{ $header }}
                     </div>
