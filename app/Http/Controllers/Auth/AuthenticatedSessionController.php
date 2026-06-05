@@ -30,8 +30,18 @@ class AuthenticatedSessionController extends Controller
 
         $request->session()->regenerate();
 
-       /** @var \App\Models\User $user */
+        /** @var \App\Models\User $user */
         $user = auth()->user();
+
+        if ($user->two_factor_confirmed_at && ! $request->session()->get('2fa.passed')) {
+            if ($user->isAdmin()) {
+                return redirect()->route('two-factor.admin');
+            }
+
+            if ($user->isUsuario()) {
+                return redirect()->route('two-factor.user');
+            }
+        }
 
         if ($user->isAdmin()) {
             return redirect()->route('dashboard.admin');

@@ -17,9 +17,7 @@ class EnsureTwoFactorEnabled
         }
         
 
-        if (
-            
-            $user->isUsuario()
+        if (( $user->isUsuario() || $user->isAdmin())
             && !$user->two_factor_confirmed_at
         ) {
             return redirect()
